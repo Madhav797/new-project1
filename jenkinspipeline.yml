@@ -1,0 +1,27 @@
+---
+pipeline{
+ stages{
+     
+    stage(git checkout){
+      git credit  url:gitrepourl
+   }
+   stage(mvn build){
+      mvn clean package
+   }
+   stage(sonar qube){ 
+      mvn sonar:sonar
+    }
+
+   stage(nexus upload){
+
+   }    
+
+  stage(deploy into tomcat)
+
+    {
+     scp  .war  /webapps/
+     startup.sh  # start the tomcat server
+   }      
+
+}
+---
